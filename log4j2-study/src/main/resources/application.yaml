@@ -1,3 +1,5 @@
 spring:
   application:
     name: log4j2-study
+logging:
+  config: classpath:log4j2.yaml
