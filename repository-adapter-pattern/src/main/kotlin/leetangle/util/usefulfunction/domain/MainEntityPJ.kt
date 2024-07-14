@@ -16,7 +16,7 @@ import java.time.LocalDateTime
  */
 data class MainEntityPJ(
     var id: Long = 0,
-    var name: String = "",
+    var name: String? = "",
     var email: String? = null,
     var createdDate: LocalDateTime = LocalDateTime.now(),
     var lastModifiedDate: LocalDateTime = LocalDateTime.now(),
@@ -27,12 +27,8 @@ data class MainEntityPJ(
         fun from(entity: MainEntity): MainEntityPJ {
             return MainEntityPJ(
                 id = entity.id,
-                name = entity.name,
-                email = entity.email,
-                createdDate = entity.createdDate,
-                lastModifiedDate = entity.lastModifiedDate,
-                createdBy = entity.createdBy,
-                modifiedBy = entity.modifiedBy
+                name = entity.body!!.name,
+                email = entity.body!!.email
             )
         }
     }

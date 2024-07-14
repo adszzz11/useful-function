@@ -3,7 +3,7 @@ package leetangle.util.usefulfunction.domain.entity
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
-import java.time.LocalDateTime
+import leetangle.util.usefulfunction.domain.entity.base.BaseEntity
 
 /**
  *packageName    : leetangle.util.usefulfunction.domain
@@ -20,13 +20,12 @@ import java.time.LocalDateTime
 @Entity
 class MainEntityHistory(
     var id: Long = 0,
-    var name: String = "",
-    var email: String? = null,
-    var createdDate: LocalDateTime = LocalDateTime.now(),
-    var lastModifiedDate: LocalDateTime = LocalDateTime.now(),
-    var createdBy: String = "",
-    var modifiedBy: String = ""
-) {
+    var body: MainEntityBody? = null
+) : BaseEntity() {
+    init {
+        this.isUsed = false
+    }
+
     @Id
     @GeneratedValue
     var historyId: Long = 0
@@ -35,12 +34,7 @@ class MainEntityHistory(
         fun from(mainEntity: MainEntity): MainEntityHistory {
             return MainEntityHistory(
                 id = mainEntity.id,
-                name = mainEntity.name,
-                email = mainEntity.email,
-                createdDate = mainEntity.createdDate,
-                lastModifiedDate = mainEntity.lastModifiedDate,
-                createdBy = mainEntity.createdBy,
-                modifiedBy = mainEntity.modifiedBy
+                body = mainEntity.body
             )
         }
     }

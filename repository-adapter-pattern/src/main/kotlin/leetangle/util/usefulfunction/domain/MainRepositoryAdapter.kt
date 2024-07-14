@@ -23,17 +23,18 @@ class MainRepositoryAdapter(
     val mainHistoryRepository: MainHistoryRepository
 ) {
     fun save(main: MainEntityPJ): MainEntityPJ {
+        println("save called")
         val save: MainEntity = mainRepository.save(MainEntity.from(main))
         val saveHistory = mainHistoryRepository.save(MainEntityHistory.from(save))
         println(saveHistory)
         return MainEntityPJ.from(save)
     }
-    fun update(main: MainEntityPJ) {
 
+    fun update(main: MainEntityPJ) {
         mainRepository.findById(main.id).ifPresentOrElse(
             {
-                it.name = main.name
-                it.email = main.email
+                it.body!!.name = main.name
+                it.body!!.email = main.email
                 val save = mainRepository.save(it)
                 mainHistoryRepository.save(MainEntityHistory.from(save))
             },{

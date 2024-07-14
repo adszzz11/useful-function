@@ -19,7 +19,7 @@ import java.util.Random
 @RestController
 class MainController(val service: MainService) {
 
-    @GetMapping("/")
+    @GetMapping("/save")
     fun home(): String {
         service.saveMainEntity("smlee","smlee@a.a")
         return "success"
